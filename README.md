@@ -1,3 +1,5 @@
+PRACTICE SPA
+
 # Savvy Coders Project Boilerplate Starter Kit
 
 ## Overview
