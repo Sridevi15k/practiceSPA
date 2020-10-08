@@ -5,11 +5,45 @@ import { capitalize } from "lodash";
 import * as state from "./store";
 // importing all by name
 import { Header, Nav, Main, Footer } from "./components";
+import axios from "axios";
 
 // add menu toggle to bars icon in nav bar
 /*document.querySelector(".fa-bars").addEventListener("click", () => {
   document.querySelector("nav > ul").classList.toggle("hidden--mobile");
 });*/
+
+// get data from an API endpoint
+axios
+  .get("https://jsonplaceholder.typicode.com/posts")
+  // handle the response from the API
+  .then(response => {
+    // for each post in the response Array,
+    response.data.forEach(post => {
+      // add it to state.Blog.posts
+      state.Blog.posts.push(post);
+    });
+    const params = router.lastRouteResolved().params;
+    // if params exists (any page but Home),
+    if (params) {
+      // re-render the page
+      render(state[params.page]);
+    }
+  });
+
+axios.get(/* your API endpoint from above */).then(response => {
+  state.Home.weather.city = response.name;
+  state.Home.weather.temp = response.main.temp;
+  state.Home.weather.description = response.weather.main;
+});
+
+axios
+  .get(`https://api.github.com/users/${Sridevi15k}/repos`, {
+    headers: {
+      Authorization: `token 2e836cba87688e1bb26940fd7be83087102eaa26
+      `
+    }
+  })
+  .then(response => console.log(response.data));
 
 const router = new Navigo(window.location.origin);
 
@@ -74,7 +108,8 @@ dogPictures.forEach(pic => {
 });*/
 
 // handle form submission
-document.querySelector("form").addEventListener("submit", event => {
+console.log(document.querySelector("register"));
+document.querySelector("register").addEventListener("submit", event => {
   event.preventDefault();
   Array.from(event.target.elements).forEach(el => {
     console.log("Input Type: ", el.type);
