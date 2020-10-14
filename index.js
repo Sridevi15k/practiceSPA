@@ -6,6 +6,7 @@ import * as state from "./store";
 // importing all by name
 import { Header, Nav, Main, Footer } from "./components";
 import axios from "axios";
+import "./env";
 
 // add menu toggle to bars icon in nav bar
 /*document.querySelector(".fa-bars").addEventListener("click", () => {
@@ -30,17 +31,20 @@ axios
     }
   });
 
-axios.get(/* your API endpoint from above */).then(response => {
-  state.Home.weather.city = response.name;
-  state.Home.weather.temp = response.main.temp;
-  state.Home.weather.description = response.weather.main;
-});
+// axios
+//.get(/* your API endpoint from above */)
+//.then(response => {
+//   state.Home.weather.city = response.name;
+//   state.Home.weather.temp = response.main.temp;
+//   state.Home.weather.description = response.weather.main;
+// })
+//remove the API key and put after ID= and before`${process.env.OPEN_WEATHER_API_KEY}`
+//.catch(err => console.log(err));
 
 axios
-  .get(`https://api.github.com/users/${Sridevi15k}/repos`, {
+  .get(`https://api.github.com/users/Sridevi15k/repos`, {
     headers: {
-      Authorization: `token 2e836cba87688e1bb26940fd7be83087102eaa26
-      `
+      Authorization: `${process.env.GITHUB__TOKEN}`
     }
   })
   .then(response => console.log(response.data));
@@ -108,12 +112,11 @@ dogPictures.forEach(pic => {
 });*/
 
 // handle form submission
-console.log(document.querySelector("register"));
-document.querySelector("register").addEventListener("submit", event => {
-  event.preventDefault();
-  Array.from(event.target.elements).forEach(el => {
-    console.log("Input Type: ", el.type);
-    console.log("Name: ", el.name);
-    console.log("Value: ", el.value);
-  });
-});
+// document.querySelector("register").addEventListener("submit", event => {
+//   event.preventDefault();
+//   Array.from(event.target.elements).forEach(el => {
+//     console.log("Input Type: ", el.type);
+//     console.log("Name: ", el.name);
+//     console.log("Value: ", el.value);
+//   });
+// });

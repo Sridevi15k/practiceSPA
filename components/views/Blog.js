@@ -1,12 +1,3 @@
-export default st => `
-<section id="blog">
-${st.posts
-  .map(post => {
-    formatBlogPost(post);
-  })
-  .join()}
-</section>`;
-
 function formatBlogPost(post) {
   return `
   <div class="blog-post">
@@ -14,3 +5,15 @@ function formatBlogPost(post) {
     <p>${post.body}</p>
   </div>`;
 }
+
+export default st => `
+<section id="blog">
+${st.posts
+  .map(post => {
+    return formatBlogPost(post);
+  })
+  .join()}
+
+  <!-- ${st.posts.map(post => formatBlogPost(post)).join()} -->
+  <!-- ${st.posts.reduce((html, post) => html + formatBlogPost(post), ``)}-->
+</section>`;
