@@ -7,7 +7,7 @@
     "parcel-build": "parcel build index.html && cp _redirects ./dist/",
     "serve": "parcel index.html",
     "watch:server": "nodemon --watch ./server -e js ./server/index.js",
-    "heroku-postbuild": "npm-run-build"
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
